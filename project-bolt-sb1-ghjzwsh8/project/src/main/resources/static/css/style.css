@@ -1,0 +1,272 @@
+/* ============================================================
+   Distributed File Storage – Dashboard Styles
+   ============================================================ */
+
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #64748b;
+    --success: #16a34a;
+    --warning: #f59e0b;
+    --danger: #dc2626;
+    --info: #0891b2;
+    --bg-main: #f1f5f9;
+    --card-border: #e2e8f0;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+}
+
+body {
+    background-color: var(--bg-main);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text-dark);
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+    font-size: 1.25rem;
+    letter-spacing: -0.3px;
+}
+
+.navbar .nav-link {
+    color: #cbd5e1 !important;
+    font-weight: 500;
+    padding: 0.5rem 1rem !important;
+    border-radius: 8px;
+    margin: 0 2px;
+    transition: all 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar .nav-link.active {
+    color: #fff !important;
+    background-color: var(--primary);
+}
+
+/* ===== Main Content ===== */
+.main-content {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-weight: 700;
+    color: var(--text-dark);
+    font-size: 1.5rem;
+}
+
+/* ===== Stat Cards ===== */
+.stat-card {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background: #fff;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 2rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.stat-value-sm {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    opacity: 0.7;
+}
+
+/* ===== Upload Card ===== */
+.upload-card {
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.drop-zone {
+    border: 3px dashed #cbd5e1;
+    border-radius: 12px;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+    border-color: var(--primary);
+    background-color: #eff6ff;
+    transform: scale(1.01);
+}
+
+.drop-zone.dragover {
+    background-color: #dbeafe;
+}
+
+/* ===== Progress Bar ===== */
+.progress {
+    border-radius: 6px;
+    background-color: #e2e8f0;
+}
+
+.progress-bar {
+    background: linear-gradient(90deg, var(--primary), #3b82f6);
+    border-radius: 6px;
+    transition: width 0.3s ease;
+}
+
+/* ===== Tables ===== */
+.table > thead > tr > th {
+    background-color: #f8fafc;
+    border-bottom: 2px solid var(--card-border);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.table > tbody > tr {
+    transition: background-color 0.15s ease;
+}
+
+.table > tbody > tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* ===== Badges ===== */
+.badge-storage-local {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.badge-storage-s3 {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.badge-storage-gcs {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-status-active {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.badge-status-deleted {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-status-replicated {
+    background-color: #dbeafe;
+    color: #1e40af;
+}
+
+.badge-status-failed {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-node-active {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.badge-node-inactive {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.badge-node-offline {
+    background-color: #fee2e2;
+    color: #991b1b;
+}
+
+/* ===== Node Cards ===== */
+.node-card {
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.node-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.node-icon {
+    font-size: 3rem;
+}
+
+/* ===== Buttons ===== */
+.btn-primary {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    .stat-icon {
+        font-size: 2rem;
+    }
+    .drop-zone {
+        padding: 2rem 1rem;
+    }
+}
+
+/* ===== Animations ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.content-section {
+    animation: fadeIn 0.3s ease;
+}
+
+.upload-success {
+    animation: fadeIn 0.4s ease;
+}

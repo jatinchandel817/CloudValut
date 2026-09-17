@@ -1,0 +1,62 @@
+# ============================================================
+#  docker-compose.yml – Distributed File Storage
+#  Services:
+#    1. MariaDB database
+#    2. Spring Boot application
+# ============================================================
+
+version: '3.8'
+
+services:
+  # ---- MariaDB Database ----
+  mariadb:
+    image: mariadb:11.4
+    container_name: dfs-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD:-changeme}
+      MARIADB_DATABASE: distributed_file_storage
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - dfs-network
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ---- Spring Boot Application ----
+  app:
+    build: .
+    container_name: dfs-app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://mariadb:3306/distributed_file_storage?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:-changeme}
+      STORAGE_LOCAL_PATH: /app/uploads
+      STORAGE_ENABLED_PROVIDERS: ${STORAGE_ENABLED_PROVIDERS:-LOCAL}
+      # AWS S3 (uncomment and set to enable)
+      AWS_REGION: ${AWS_REGION:-}
+      AWS_S3_BUCKET: ${AWS_S3_BUCKET:-}
+      # GCP (uncomment and set to enable)
+      GCP_PROJECT_ID: ${GCP_PROJECT_ID:-}
+      GCP_BUCKET_NAME: ${GCP_BUCKET_NAME:-}
+    volumes:
+      - uploads_data:/app/uploads
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    networks:
+      - dfs-network
+
+volumes:
+  mariadb_data:
+  uploads_data:
+
+networks:
+  dfs-network:
+    driver: bridge
